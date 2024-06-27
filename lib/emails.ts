@@ -37,13 +37,13 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
 };
 
 export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
-  
+
   sgMail.setApiKey(sendgridApiKey);
 
   const msg = {
     to: email,
     from: emailSender,
-    subject: 'Reset your password',
+    subject: '2FA Token',
     html: `<p>Your 2FA token is ${token}</p>`,
   };
 

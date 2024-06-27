@@ -33,6 +33,7 @@ const LoginForm = () => {
     : '';
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [isTwoFactorVisible, setIsTwoFactorVisible] = useState(false);
   const [isLoading, startTransition] = useTransition();
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -44,10 +45,26 @@ const LoginForm = () => {
 
   const handleSubmitForm = (values: z.infer<typeof LoginSchema>) => {
     startTransition(() => {
-      login(values).then((data) => {
-        setErrorMessage(data?.error || '');
-        setSuccessMessage(data?.success || '');
-      });
+      login(values)
+        .then((data) => {
+          if (data?.error) {
+            form.reset();
+            setErrorMessage(data.error);
+          }
+
+          if (data?.success) {
+            form.reset();
+            setSuccessMessage(data.success);
+          }
+
+          if (data?.twoFactor) {
+            setIsTwoFactorVisible(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+          setErrorMessage('Something went wrong')
+        });
     });
   };
 
@@ -56,46 +73,68 @@ const LoginForm = () => {
       <div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmitForm)}>
-            <FormField
-              control={form.control}
-              name='email'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder='example@mail.com'
-                      type='email'
-                      disabled={isLoading}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name='password'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder='******'
-                      type='password'
-                      disabled={isLoading}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            {isTwoFactorVisible ? (
+              <FormField
+                control={form.control}
+                name='code'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Two Factor Code</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder='12345'
+                        disabled={isLoading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            ) : (
+              <>
+                <FormField
+                  control={form.control}
+                  name='email'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder='example@mail.com'
+                          type='email'
+                          disabled={isLoading}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name='password'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder='******'
+                          type='password'
+                          disabled={isLoading}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </>
+            )}
             <AuthSuccessMessage message={successMessage} />
             <AuthErrorMessage message={errorMessage || notLinkedErrorMessage} />
             <Button type='submit' disabled={isLoading}>
-              Login
+              {isTwoFactorVisible ? "Confirm" : "Log in"}
             </Button>
           </form>
         </Form>

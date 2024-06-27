@@ -6,17 +6,7 @@ import { useState, useTransition } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { ResetSchema } from '@/schemas';
-import { Input } from '@/components/ui/input';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
 // import { CardWrapper } from "@/components/auth/card-wrapper"
-import { Button } from '@/components/ui/button';
 import AuthSuccessMessage from './AuthSuccessMessage';
 import AuthErrorMessage from './AuthErrorMessage';
 // import { FormError } from "@/components/form-error";
@@ -49,35 +39,25 @@ const ResetPasswordForm = () => {
 
   return (
     <div>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
-          <div className='space-y-4'>
-            <FormField
-              control={form.control}
-              name='email'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      placeholder='john.doe@example.com'
-                      type='email'
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
+        <div className='space-y-4'>
+          <div>
+            <label htmlFor='email'>Email</label>
+            <input
+              id='email'
+              type='email'
+              {...form.register('email')}
+              placeholder='example@mail.com'
+              disabled={isPending}
             />
           </div>
-          <AuthErrorMessage message={error} />
-          <AuthSuccessMessage message={success} />
-          <Button disabled={isPending} type='submit' className='w-full'>
-            Send reset email
-          </Button>
-        </form>
-      </Form>
+        </div>
+        <AuthErrorMessage message={error} />
+        <AuthSuccessMessage message={success} />
+        <button disabled={isPending} type='submit' className='w-full'>
+          Send reset email
+        </button>
+      </form>
     </div>
   );
 };

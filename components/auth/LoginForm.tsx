@@ -1,28 +1,15 @@
 'use client';
-import React, { useState, useTransition } from 'react';
+import  { useState, useTransition } from 'react';
 
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginSchema } from '@/schemas';
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-
-import AuthWrapper from '@/components/auth/AuthWrapper';
-import { Button } from '../ui/button';
-// Server actions
-import { login } from '@/actions/login';
 import AuthSuccessMessage from './AuthSuccessMessage';
 import AuthErrorMessage from './AuthErrorMessage';
 import { useSearchParams } from 'next/navigation';
+import { login } from '@/actions/login';
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -62,84 +49,56 @@ const LoginForm = () => {
           }
         })
         .catch((err) => {
-          console.log(err)
-          setErrorMessage('Something went wrong')
+          console.log(err);
+          setErrorMessage('Something went wrong');
         });
     });
   };
 
   return (
-    <AuthWrapper headerLabel='Log in' showSocial>
-      <div>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmitForm)}>
-            {isTwoFactorVisible ? (
-              <FormField
-                control={form.control}
-                name='code'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Two Factor Code</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        placeholder='12345'
-                        disabled={isLoading}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            ) : (
-              <>
-                <FormField
-                  control={form.control}
-                  name='email'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          placeholder='example@mail.com'
-                          type='email'
-                          disabled={isLoading}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name='password'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          placeholder='******'
-                          type='password'
-                          disabled={isLoading}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </>
-            )}
-            <AuthSuccessMessage message={successMessage} />
-            <AuthErrorMessage message={errorMessage || notLinkedErrorMessage} />
-            <Button type='submit' disabled={isLoading}>
-              {isTwoFactorVisible ? "Confirm" : "Log in"}
-            </Button>
-          </form>
-        </Form>
-      </div>
-    </AuthWrapper>
+    <form onSubmit={form.handleSubmit(handleSubmitForm)}>
+      {isTwoFactorVisible && (
+        <div>
+          <label htmlFor='code'>Two Factor Code</label>
+          <input
+            id='code'
+            type='text'
+            {...form.register('code')}
+            placeholder='12345'
+            disabled={isLoading}
+          />
+        </div>
+      )}
+      {!isTwoFactorVisible && (
+        <>
+          <div>
+            <label htmlFor='email'>Email</label>
+            <input
+              id='email'
+              type='email'
+              {...form.register('email')}
+              placeholder='example@mail.com'
+              disabled={isLoading}
+            />
+          </div>
+          <div>
+            <label htmlFor='password'>Password</label>
+            <input
+              id='password'
+              type='password'
+              {...form.register('password')}
+              placeholder='******'
+              disabled={isLoading}
+            />
+          </div>
+        </>
+      )}
+      <AuthSuccessMessage message={successMessage} />
+      <AuthErrorMessage message={errorMessage || notLinkedErrorMessage} />
+      <button type='submit' disabled={isLoading}>
+        {isTwoFactorVisible ? 'Confirm' : 'Log in'}
+      </button>
+    </form>
   );
 };
 

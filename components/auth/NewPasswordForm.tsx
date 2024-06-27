@@ -8,16 +8,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useSearchParams } from 'next/navigation';
 
 import { NewPasswordSchema } from '@/schemas';
-import { Input } from '@/components/ui/input';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Button } from '@/components/ui/button';
 import AuthSuccessMessage from './AuthSuccessMessage';
 import AuthErrorMessage from './AuthErrorMessage';
 import { updatePassword } from '@/actions/newPassword';
@@ -50,35 +40,25 @@ const NewPasswordForm = () => {
 
   return (
     <div>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
-          <div className='space-y-4'>
-            <FormField
-              control={form.control}
-              name='password'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>New Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      placeholder='john.doe@example.com'
-                      type='password'
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
+        <div className='space-y-4'>
+          <div>
+            <label htmlFor='password'>Password</label>
+            <input
+              id='password'
+              type='password'
+              {...form.register('password')}
+              placeholder='******'
+              disabled={isPending}
             />
           </div>
-          <AuthErrorMessage message={error} />
-          <AuthSuccessMessage message={success} />
-          <Button disabled={isPending} type='submit' className='w-full'>
-            Update password{' '}
-          </Button>
-        </form>
-      </Form>
+        </div>
+        <AuthErrorMessage message={error} />
+        <AuthSuccessMessage message={success} />
+        <button disabled={isPending} type='submit' className='w-full'>
+          Update password{' '}
+        </button>
+      </form>
     </div>
   );
 };

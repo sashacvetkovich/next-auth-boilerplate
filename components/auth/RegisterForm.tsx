@@ -1,117 +1,77 @@
-"use client";
-import React, { useState, useTransition } from "react";
+'use client';
+import { useState, useTransition } from 'react';
 
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { RegisterSchema } from "@/schemas";
-
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import AuthSuccessMessage from "./AuthSuccessMessage";
-import AuthErrorMessage from "./AuthErrorMessage";
-
-import AuthWrapper from "@/components/auth/AuthWrapper";
-import { Button } from "../ui/button";
+import * as z from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { RegisterSchema } from '@/schemas';
+import AuthSuccessMessage from './AuthSuccessMessage';
+import AuthErrorMessage from './AuthErrorMessage';
 // Server actions
-import { register } from "@/actions/register";
+import { register } from '@/actions/register';
 
 const RegisterForm = () => {
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [isLoading, startTransition] = useTransition();
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
-      email: "",
-      password: "",
-      name: "",
+      email: '',
+      password: '',
+      name: '',
     },
   });
 
   const handleSubmitForm = (values: z.infer<typeof RegisterSchema>) => {
     startTransition(() => {
       register(values).then((data) => {
-        setErrorMessage(data?.error || "");
-        setSuccessMessage(data?.success || "");
+        setErrorMessage(data?.error || '');
+        setSuccessMessage(data?.success || '');
       });
     });
   };
 
   return (
-    <AuthWrapper headerLabel="Register" showSocial>
-      <div>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmitForm)}>
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="example@mail.com"
-                      type="email"
-                      disabled={isLoading}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="******"
-                      type="password"
-                      disabled={isLoading}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="John Doe"
-                      disabled={isLoading}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <AuthSuccessMessage message={successMessage} />
-            <AuthErrorMessage message={errorMessage} />
-            <Button type="submit" disabled={isLoading}>
-              Login
-            </Button>
-          </form>
-        </Form>
-      </div>
-    </AuthWrapper>
+    <div>
+      <form onSubmit={form.handleSubmit(handleSubmitForm)}>
+        <div>
+          <label htmlFor='email'>Email</label>
+          <input
+            id='email'
+            type='email'
+            {...form.register('email')}
+            placeholder='example@mail.com'
+            disabled={isLoading}
+          />
+        </div>
+        <div>
+          <label htmlFor='password'>Password</label>
+          <input
+            id='password'
+            type='password'
+            {...form.register('password')}
+            placeholder='******'
+            disabled={isLoading}
+          />
+        </div>
+        <div>
+          <label htmlFor='password'>Password</label>
+          <input
+            id='name'
+            type='text'
+            {...form.register('name')}
+            placeholder='John Doe'
+            disabled={isLoading}
+          />
+        </div>
+        <AuthSuccessMessage message={successMessage} />
+        <AuthErrorMessage message={errorMessage} />
+        <button type='submit' disabled={isLoading}>
+          Login
+        </button>
+      </form>
+    </div>
   );
 };
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { auth, signOut } from '@/auth';
 
 const SettinsPage = async () => {

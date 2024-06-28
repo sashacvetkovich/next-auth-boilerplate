@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import { UseFormRegisterReturn } from 'react-hook-form';
 // Icons
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 // Utils
@@ -12,11 +12,7 @@ interface PasswordInputProps {
   label: string;
   isDisabled?: boolean;
   showPasswordStrengthBox?: boolean;
-  form: UseFormReturn<{
-    email: string;
-    password: string;
-    code?: string | undefined;
-  }>;
+  form: UseFormRegisterReturn;
 }
 
 const PasswordInput = ({
@@ -32,7 +28,7 @@ const PasswordInput = ({
     useState(false);
   const [passwordStrength, setPasswordStrength] = useState({
     width: 0,
-    color: 'red',
+    color: '#fff',
   });
 
   const togglePasswordVisibility = () => {
@@ -44,15 +40,12 @@ const PasswordInput = ({
   };
 
   const hidePasswordStrength = (event: React.FocusEvent<HTMLInputElement>) => {
-    const { onBlur } = form.register('password');
-    onBlur(event);
+    form.onBlur(event);
     setIsPasswordStrengthVisible(false);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { onChange } = form.register('password');
-    onChange(e);
-
+    form.onChange(e);
     const valuses = getPasswordStrength(e.target.value);
     setPasswordStrength(valuses);
   };
@@ -73,7 +66,7 @@ const PasswordInput = ({
       </div>
       <div className='relative'>
         <input
-          {...form.register('password')}
+          {...form}
           className='border border-slate-700 rounded-md px-3 py-2 outline-none w-full '
           type={isPasswordVisible ? 'text' : 'password'}
           id={id}

@@ -1,16 +1,12 @@
-import { UseFormReturn } from 'react-hook-form';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface TextInputProps {
   id: string;
   placeholder: string;
-  type: 'email' | 'code';
+  type: 'email' | 'code' | 'name';
   label: string;
   isDisabled?: boolean;
-  form: UseFormReturn<{
-    email: string;
-    password: string;
-    code?: string | undefined;
-  }>;
+  form: UseFormRegisterReturn;
 }
 
 const TextInput = ({
@@ -32,7 +28,7 @@ const TextInput = ({
         id={id}
         placeholder={placeholder}
         disabled={isDisabled}
-        {...form.register(type)}
+        {...form}
       />
     </div>
   );

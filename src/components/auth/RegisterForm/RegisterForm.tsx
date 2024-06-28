@@ -1,12 +1,18 @@
 'use client';
 import { useState, useTransition } from 'react';
-
-import * as z from 'zod';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+// Schemas
 import { RegisterSchema } from '@/schemas';
+// Components
+import InfoMessage from '@/components/shared/InfoMessage/InfoMessage';
+import PasswordInput from '@/components/inputs/PasswordInput/PasswordInput';
 // Server actions
 import { register } from '@/actions/register';
+import Button from '@/components/shared/Button/Button';
+import TextInput from '@/components/inputs/TextInput/TextInput';
+// Utils
+import * as z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const RegisterForm = () => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -33,41 +39,35 @@ const RegisterForm = () => {
   return (
     <div>
       <form onSubmit={form.handleSubmit(handleSubmitForm)}>
-        <div>
-          <label htmlFor='email'>Email</label>
-          <input
+        <div className='space-y-4'>
+          <TextInput
+            id='name'
+            type='name'
+            placeholder='John Doe'
+            isDisabled={isLoading}
+            label='Name'
+            form={form.register('name')}
+          />
+          <TextInput
             id='email'
             type='email'
-            {...form.register('email')}
             placeholder='example@mail.com'
-            disabled={isLoading}
+            isDisabled={isLoading}
+            label='Email'
+            form={form.register('email')}
           />
-        </div>
-        <div>
-          <label htmlFor='password'>Password</label>
-          <input
+          <PasswordInput
             id='password'
-            type='password'
-            {...form.register('password')}
-            placeholder='******'
-            disabled={isLoading}
+            placeholder='********'
+            isDisabled={isLoading}
+            label='Password'
+            form={form.register('password')}
+            showPasswordStrengthBox
           />
+          <InfoMessage text={successMessage} type='success' />
+          <InfoMessage text={errorMessage} type='error' />
+          <Button text='Register' isDisabled={isLoading} />
         </div>
-        <div>
-          <label htmlFor='password'>Password</label>
-          <input
-            id='name'
-            type='text'
-            {...form.register('name')}
-            placeholder='John Doe'
-            disabled={isLoading}
-          />
-        </div>
-        <AuthSuccessMessage message={successMessage} />
-        <AuthErrorMessage message={errorMessage} />
-        <button type='submit' disabled={isLoading}>
-          Login
-        </button>
       </form>
     </div>
   );

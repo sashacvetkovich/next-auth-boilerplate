@@ -70,7 +70,7 @@ const LoginForm = () => {
           label='Two Factor Code<'
           type='code'
           placeholder='123456'
-          form={form}
+          form={form.register('code')}
           isDisabled={isLoading}
         />
       )}
@@ -81,7 +81,7 @@ const LoginForm = () => {
             label='Email'
             type='email'
             placeholder='example@mail.com'
-            form={form}
+            form={form.register('email')}
             isDisabled={isLoading}
           />
           <PasswordInput
@@ -89,7 +89,7 @@ const LoginForm = () => {
             label='Password'
             placeholder='******'
             isDisabled={isLoading}
-            form={form}
+            form={form.register('password')}
           />
         </div>
       )}

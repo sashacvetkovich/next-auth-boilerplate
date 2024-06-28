@@ -1,18 +1,19 @@
 'use client';
 import { useState, useTransition } from 'react';
-
-import * as z from 'zod';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { LoginSchema } from '@/schemas';
-
-import AuthSuccessMessage from './AuthSuccessMessage';
-import AuthErrorMessage from './AuthErrorMessage';
 import { useSearchParams } from 'next/navigation';
+// Schemas
+import { LoginSchema } from '@/schemas';
+// Server actions
 import { login } from '@/actions/login';
+// Components
 import TextInput from '../inputs/TextInput/TextInput';
 import PasswordInput from '../inputs/PasswordInput/PasswordInput';
 import Button from '../shared/Button/Button';
+import InfoMessage from '../shared/InfoMessage/InfoMessage';
+// Utils
+import * as z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -59,18 +60,19 @@ const LoginForm = () => {
   };
 
   return (
-    <form className='min-w-96' onSubmit={form.handleSubmit(handleSubmitForm)}>
+    <form
+      className='sm:min-w-96'
+      onSubmit={form.handleSubmit(handleSubmitForm)}
+    >
       {isTwoFactorVisible && (
-        <div>
-          <label htmlFor='code'>Two Factor Code</label>
-          <input
-            id='code'
-            type='text'
-            {...form.register('code')}
-            placeholder='12345'
-            disabled={isLoading}
-          />
-        </div>
+        <TextInput
+          id='code'
+          label='Two Factor Code<'
+          type='code'
+          placeholder='123456'
+          form={form}
+          isDisabled={isLoading}
+        />
       )}
       {!isTwoFactorVisible && (
         <div className='space-y-4'>
@@ -91,8 +93,10 @@ const LoginForm = () => {
           />
         </div>
       )}
-      <AuthSuccessMessage message={successMessage} />
-      <AuthErrorMessage message={errorMessage || notLinkedErrorMessage} />
+
+      <InfoMessage text={successMessage} type='success' />
+      <InfoMessage text={errorMessage || notLinkedErrorMessage} type='error' />
+
       <Button
         text={isTwoFactorVisible ? 'Confirm' : 'Log in'}
         isDisabled={isLoading}

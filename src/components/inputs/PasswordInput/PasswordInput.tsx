@@ -11,6 +11,7 @@ interface PasswordInputProps {
   placeholder: string;
   label: string;
   isDisabled?: boolean;
+  showPasswordStrengthBox?: boolean;
   form: UseFormReturn<{
     email: string;
     password: string;
@@ -24,6 +25,7 @@ const PasswordInput = ({
   label,
   isDisabled,
   form,
+  showPasswordStrengthBox,
 }: PasswordInputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isPasswordStrengthVisible, setIsPasswordStrengthVisible] =
@@ -81,21 +83,23 @@ const PasswordInput = ({
           onBlur={hidePasswordStrength}
           onChange={handleInputChange}
         />
-        <div
-          className={`absolute bottom-0 left-0 h-1 w-[100%] bg-slate-400 rounded-b-3xl overflow-hidden transition-opacity duration-200 ${
-            isPasswordStrengthVisible ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
+        {showPasswordStrengthBox && (
           <div
-            style={{
-              width: `${passwordStrength.width}%`,
-              backgroundColor: `${passwordStrength.color}`,
-            }}
-            className='overflow-hidden h-full w-0'
+            className={`absolute bottom-0 left-0 h-1 w-[100%] bg-slate-400 rounded-b-3xl overflow-hidden transition-opacity duration-200 ${
+              isPasswordStrengthVisible ? 'opacity-100' : 'opacity-0'
+            }`}
           >
-            &nbsp;
+            <div
+              style={{
+                width: `${passwordStrength.width}%`,
+                backgroundColor: `${passwordStrength.color}`,
+              }}
+              className='overflow-hidden h-full w-0'
+            >
+              &nbsp;
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

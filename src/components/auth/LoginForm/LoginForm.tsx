@@ -7,10 +7,10 @@ import { LoginSchema } from '@/schemas';
 // Server actions
 import { login } from '@/actions/login';
 // Components
-import TextInput from '../inputs/TextInput/TextInput';
-import PasswordInput from '../inputs/PasswordInput/PasswordInput';
-import Button from '../shared/Button/Button';
-import InfoMessage from '../shared/InfoMessage/InfoMessage';
+import TextInput from '../../inputs/TextInput/TextInput';
+import PasswordInput from '../../inputs/PasswordInput/PasswordInput';
+import Button from '../../shared/Button/Button';
+import InfoMessage from '../../shared/InfoMessage/InfoMessage';
 // Utils
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -61,7 +61,7 @@ const LoginForm = () => {
 
   return (
     <form
-      className='sm:min-w-96'
+      className='sm:min-w-80'
       onSubmit={form.handleSubmit(handleSubmitForm)}
     >
       {isTwoFactorVisible && (

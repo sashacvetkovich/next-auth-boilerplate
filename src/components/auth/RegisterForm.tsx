@@ -5,8 +5,6 @@ import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RegisterSchema } from '@/schemas';
-import AuthSuccessMessage from './AuthSuccessMessage';
-import AuthErrorMessage from './AuthErrorMessage';
 // Server actions
 import { register } from '@/actions/register';
 

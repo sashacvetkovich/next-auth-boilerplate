@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 // Components
 import LoginForm from '@/components/auth/LoginForm';
 import LoadingSpinner from '@/components/shared/LoadingSpinner/LoadingSpinner';
+import AuthWrap from '@/components/auth/AuthWrap/AuthWrap';
 
 const LoginPage = () => {
   return (
@@ -13,7 +14,9 @@ const LoginPage = () => {
           </div>
         }
       >
-        <LoginForm />
+        <AuthWrap title='Login' descripiton='Login to your account'>
+          <LoginForm />
+        </AuthWrap>
       </Suspense>
     </div>
   );

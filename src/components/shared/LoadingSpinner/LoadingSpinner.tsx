@@ -3,7 +3,6 @@ interface LoadingSpinnerProps {
 }
 
 const LoadingSpinner = ({ width }: LoadingSpinnerProps) => {
-    
   const spinnerSize = width || '45px';
 
   return (

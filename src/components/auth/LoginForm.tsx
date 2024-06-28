@@ -1,5 +1,5 @@
 'use client';
-import  { useState, useTransition } from 'react';
+import { useState, useTransition } from 'react';
 
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
@@ -10,6 +10,8 @@ import AuthSuccessMessage from './AuthSuccessMessage';
 import AuthErrorMessage from './AuthErrorMessage';
 import { useSearchParams } from 'next/navigation';
 import { login } from '@/actions/login';
+import TextInput from '../inputs/TextInput/TextInput';
+import PasswordInput from '../inputs/PasswordInput/PasswordInput';
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -56,7 +58,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={form.handleSubmit(handleSubmitForm)}>
+    <form className='min-w-96' onSubmit={form.handleSubmit(handleSubmitForm)}>
       {isTwoFactorVisible && (
         <div>
           <label htmlFor='code'>Two Factor Code</label>
@@ -69,19 +71,26 @@ const LoginForm = () => {
           />
         </div>
       )}
+      {/* TEST */}
+      {/* TEST */}
       {!isTwoFactorVisible && (
-        <>
-          <div>
-            <label htmlFor='email'>Email</label>
-            <input
-              id='email'
-              type='email'
-              {...form.register('email')}
-              placeholder='example@mail.com'
-              disabled={isLoading}
-            />
-          </div>
-          <div>
+        <div className='space-y-4'>
+          <TextInput
+            id='email'
+            label='Email'
+            type='email'
+            placeholder='example@mail.com'
+            form={form}
+            isDisabled={isLoading}
+          />
+          <PasswordInput
+            id='password'
+            label='Password'
+            placeholder='******'
+            isDisabled={isLoading}
+            form={form}
+          />
+          {/* <div>
             <label htmlFor='password'>Password</label>
             <input
               id='password'
@@ -90,8 +99,8 @@ const LoginForm = () => {
               placeholder='******'
               disabled={isLoading}
             />
-          </div>
-        </>
+          </div> */}
+        </div>
       )}
       <AuthSuccessMessage message={successMessage} />
       <AuthErrorMessage message={errorMessage || notLinkedErrorMessage} />

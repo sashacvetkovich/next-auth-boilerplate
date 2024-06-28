@@ -12,6 +12,7 @@ import { useSearchParams } from 'next/navigation';
 import { login } from '@/actions/login';
 import TextInput from '../inputs/TextInput/TextInput';
 import PasswordInput from '../inputs/PasswordInput/PasswordInput';
+import Button from '../shared/Button/Button';
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -71,8 +72,6 @@ const LoginForm = () => {
           />
         </div>
       )}
-      {/* TEST */}
-      {/* TEST */}
       {!isTwoFactorVisible && (
         <div className='space-y-4'>
           <TextInput
@@ -90,23 +89,14 @@ const LoginForm = () => {
             isDisabled={isLoading}
             form={form}
           />
-          {/* <div>
-            <label htmlFor='password'>Password</label>
-            <input
-              id='password'
-              type='password'
-              {...form.register('password')}
-              placeholder='******'
-              disabled={isLoading}
-            />
-          </div> */}
         </div>
       )}
       <AuthSuccessMessage message={successMessage} />
       <AuthErrorMessage message={errorMessage || notLinkedErrorMessage} />
-      <button type='submit' disabled={isLoading}>
-        {isTwoFactorVisible ? 'Confirm' : 'Log in'}
-      </button>
+      <Button
+        text={isTwoFactorVisible ? 'Confirm' : 'Log in'}
+        isDisabled={isLoading}
+      />
     </form>
   );
 };

@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { checkVerificationToken } from '@/actions/verification';
-import AuthSuccessMessage from './AuthSuccessMessage';
-import AuthErrorMessage from './AuthErrorMessage';
+import InfoMessage from '../../shared/InfoMessage/InfoMessage';
+import LoadingSpinner from '../../shared/LoadingSpinner/LoadingSpinner';
 
 const VerificationForm = () => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -33,11 +33,13 @@ const VerificationForm = () => {
   }, []);
 
   return (
-    <div>
-      VerificationForm
-      {!successMessage && !errorMessage ? 'Loading' : null}
-      <AuthSuccessMessage message={successMessage} />
-      <AuthErrorMessage message={errorMessage} />
+    <div className='sm:min-w-96'>
+      {!successMessage && !errorMessage ? (
+        <LoadingSpinner size='lg' className='mt-4' />
+      ) : null}
+
+      <InfoMessage text={successMessage || ''} type='success' />
+      <InfoMessage text={errorMessage || ''} type='error' />
     </div>
   );
 };

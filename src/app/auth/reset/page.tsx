@@ -8,9 +8,8 @@ const ResetPasswordPage = () => {
     <div>
       <Suspense fallback={<LoadingSpinner size='lg' className='mt-10' />}>
         <AuthWrap
-          title='Register'
-          descripiton='Join us today and unlock exclusive features'
-          showSocialLogin
+          title='Reset'
+          descripiton='Enter your email to receive a link to reset your password'
         >
           <ResetPasswordForm />
         </AuthWrap>

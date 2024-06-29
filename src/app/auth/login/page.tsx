@@ -7,13 +7,7 @@ import AuthWrap from '@/components/auth/AuthWrap/AuthWrap';
 const LoginPage = () => {
   return (
     <div>
-      <Suspense
-        fallback={
-          <div className='flex justify-center mt-10'>
-            <LoadingSpinner />
-          </div>
-        }
-      >
+      <Suspense fallback={<LoadingSpinner size='lg' className='mt-10' />}>
         <AuthWrap
           title='Login'
           descripiton='Login to your account'

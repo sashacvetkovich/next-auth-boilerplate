@@ -6,12 +6,10 @@ import { useState, useTransition } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { ResetSchema } from '@/schemas';
-// import { CardWrapper } from "@/components/auth/card-wrapper"
-import AuthSuccessMessage from './AuthSuccessMessage';
-import AuthErrorMessage from './AuthErrorMessage';
-// import { FormError } from "@/components/form-error";
-// import { FormSuccess } from "@/components/form-success";
+import InfoMessage from '@/components/shared/InfoMessage/InfoMessage';
 import { resetPassword } from '@/actions/reset';
+import Button from '@/components/shared/Button/Button';
+import TextInput from '@/components/inputs/TextInput/TextInput';
 
 const ResetPasswordForm = () => {
   const [error, setError] = useState<string | undefined>('');
@@ -38,27 +36,21 @@ const ResetPasswordForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
-        <div className='space-y-4'>
-          <div>
-            <label htmlFor='email'>Email</label>
-            <input
-              id='email'
-              type='email'
-              {...form.register('email')}
-              placeholder='example@mail.com'
-              disabled={isPending}
-            />
-          </div>
-        </div>
-        <AuthErrorMessage message={error} />
-        <AuthSuccessMessage message={success} />
-        <button disabled={isPending} type='submit' className='w-full'>
-          Send reset email
-        </button>
-      </form>
-    </div>
+    <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
+      <TextInput
+        id='email'
+        label='Email'
+        placeholder='example@mail.com'
+        type='email'
+        isDisabled={isPending}
+        form={form.register('email')}
+      />
+
+      <InfoMessage text={error || ''} type='error' />
+      <InfoMessage text={success || ''} type='success' />
+
+      <Button text='Send reset email' isDisabled={isPending} />
+    </form>
   );
 };
 

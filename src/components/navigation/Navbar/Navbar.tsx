@@ -8,8 +8,8 @@ const Navbar = () => {
           <p className='font-bold text-2xl'>Logo</p>
         </Link>
         <div className='flex space-x-4'>
-          <Link href='/'>Admin</Link>
-          <Link href='/'>Dashboard</Link>
+          <Link href='/auth/login'>Login</Link>
+          <Link href='/auth/register'>Register</Link>
         </div>
       </div>
     </nav>

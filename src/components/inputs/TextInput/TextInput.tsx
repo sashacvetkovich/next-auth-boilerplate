@@ -7,6 +7,7 @@ interface TextInputProps {
   label: string;
   isDisabled?: boolean;
   form: UseFormRegisterReturn;
+  errorMessage?: string;
 }
 
 const TextInput = ({
@@ -16,6 +17,7 @@ const TextInput = ({
   label,
   isDisabled,
   form,
+  errorMessage,
 }: TextInputProps) => {
   return (
     <div className='flex flex-col'>
@@ -23,13 +25,18 @@ const TextInput = ({
         {label}
       </label>
       <input
-        className='border border-slate-700 rounded-md px-3 py-2 focus:outline-1 focus:outline-slate-500'
+        className={`${
+          errorMessage ? 'border-red-600' : 'border-slate-700'
+        } border rounded-md px-3 py-2 focus:outline-1 focus:outline-slate-500`}
         type={type === 'email' ? 'email' : 'text'}
         id={id}
         placeholder={placeholder}
         disabled={isDisabled}
         {...form}
       />
+      {errorMessage ? (
+        <p className='text-red-600 text-sm'>{errorMessage}</p>
+      ) : null}
     </div>
   );
 };

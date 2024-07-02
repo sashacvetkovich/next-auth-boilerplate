@@ -34,6 +34,9 @@ const LoginForm = () => {
       password: '',
     },
   });
+  const {
+    formState: { errors },
+  } = form;
 
   const handleSubmitForm = (values: z.infer<typeof LoginSchema>) => {
     startTransition(() => {
@@ -81,6 +84,7 @@ const LoginForm = () => {
             placeholder='example@mail.com'
             form={form.register('email')}
             isDisabled={isLoading}
+            errorMessage={errors.email?.message}
           />
           <PasswordInput
             id='password'
@@ -88,6 +92,7 @@ const LoginForm = () => {
             placeholder='******'
             isDisabled={isLoading}
             form={form.register('password')}
+            errorMessage={errors.password?.message}
           />
         </div>
       )}

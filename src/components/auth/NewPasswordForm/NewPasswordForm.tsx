@@ -27,6 +27,10 @@ const NewPasswordForm = () => {
     },
   });
 
+  const {
+    formState: { errors },
+  } = form;
+
   const onSubmit = (values: z.infer<typeof NewPasswordSchema>) => {
     setError('');
     setSuccess('');
@@ -47,6 +51,7 @@ const NewPasswordForm = () => {
         placeholder='Password'
         isDisabled={isPending}
         form={form.register('password')}
+        errorMessage={errors.password?.message}
         showPasswordStrengthBox
       />
       <InfoMessage text={error || ''} type='error' />

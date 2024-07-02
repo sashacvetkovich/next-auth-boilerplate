@@ -26,6 +26,9 @@ const RegisterForm = () => {
       name: '',
     },
   });
+  const {
+    formState: { errors },
+  } = form;
 
   const handleSubmitForm = (values: z.infer<typeof RegisterSchema>) => {
     startTransition(() => {
@@ -47,6 +50,7 @@ const RegisterForm = () => {
             isDisabled={isLoading}
             label='Name'
             form={form.register('name')}
+            errorMessage={errors.name?.message}
           />
           <TextInput
             id='email'
@@ -55,6 +59,7 @@ const RegisterForm = () => {
             isDisabled={isLoading}
             label='Email'
             form={form.register('email')}
+            errorMessage={errors.email?.message}
           />
           <PasswordInput
             id='password'
@@ -62,6 +67,7 @@ const RegisterForm = () => {
             isDisabled={isLoading}
             label='Password'
             form={form.register('password')}
+            errorMessage={errors.password?.message}
             showPasswordStrengthBox
           />
           <InfoMessage text={successMessage} type='success' />

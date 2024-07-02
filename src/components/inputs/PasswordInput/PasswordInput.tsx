@@ -13,6 +13,7 @@ interface PasswordInputProps {
   isDisabled?: boolean;
   showPasswordStrengthBox?: boolean;
   form: UseFormRegisterReturn;
+  errorMessage?: string;
 }
 
 const PasswordInput = ({
@@ -22,6 +23,7 @@ const PasswordInput = ({
   isDisabled,
   form,
   showPasswordStrengthBox,
+  errorMessage,
 }: PasswordInputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isPasswordStrengthVisible, setIsPasswordStrengthVisible] =
@@ -67,7 +69,9 @@ const PasswordInput = ({
       <div className='relative'>
         <input
           {...form}
-          className='border border-slate-700 rounded-md px-3 py-2 outline-none w-full '
+          className={`${
+            errorMessage ? 'border-red-600' : 'border-slate-700'
+          } border rounded-md px-3 py-2 outline-none w-full`}
           type={isPasswordVisible ? 'text' : 'password'}
           id={id}
           placeholder={placeholder}
@@ -76,6 +80,7 @@ const PasswordInput = ({
           onBlur={hidePasswordStrength}
           onChange={handleInputChange}
         />
+
         {showPasswordStrengthBox && (
           <div
             className={`absolute bottom-0 left-0 h-1 w-[100%] bg-slate-400 rounded-b-3xl overflow-hidden transition-opacity duration-200 ${
@@ -94,6 +99,9 @@ const PasswordInput = ({
           </div>
         )}
       </div>
+      {errorMessage ? (
+        <p className='text-red-600 text-sm'>{errorMessage}</p>
+      ) : null}
     </div>
   );
 };

@@ -34,6 +34,10 @@ const SettingsPage = () => {
     },
   });
 
+  const {
+    formState: { errors },
+  } = form;
+
   const onSubmit = (values: z.infer<typeof SettingsSchema>) => {
     startTransition(() => {
       settings(values)
@@ -77,6 +81,7 @@ const SettingsPage = () => {
                 placeholder=''
                 form={form.register('email')}
                 isDisabled={isPending}
+                errorMessage={errors.email?.message}
               />
               <PasswordInput
                 id='password'
@@ -84,6 +89,7 @@ const SettingsPage = () => {
                 placeholder=''
                 form={form.register('password')}
                 isDisabled={isPending}
+                errorMessage={errors.password?.message}
               />
               <PasswordInput
                 id='newPassword'
@@ -91,6 +97,7 @@ const SettingsPage = () => {
                 placeholder=''
                 form={form.register('newPassword')}
                 isDisabled={isPending}
+                errorMessage={errors.newPassword?.message}
               />
             </>
           )}

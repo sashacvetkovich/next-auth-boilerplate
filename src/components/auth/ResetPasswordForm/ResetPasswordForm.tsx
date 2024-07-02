@@ -23,6 +23,10 @@ const ResetPasswordForm = () => {
     },
   });
 
+  const {
+    formState: { errors },
+  } = form;
+
   const onSubmit = (values: z.infer<typeof ResetSchema>) => {
     setError('');
     setSuccess('');
@@ -44,6 +48,7 @@ const ResetPasswordForm = () => {
         type='email'
         isDisabled={isPending}
         form={form.register('email')}
+        errorMessage={errors.email?.message}
       />
 
       <InfoMessage text={error || ''} type='error' />

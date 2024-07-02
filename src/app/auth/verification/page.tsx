@@ -6,10 +6,7 @@ import AuthWrap from '@/components/auth/AuthWrap/AuthWrap';
 const VerificationPage = () => {
   return (
     <Suspense fallback={<LoadingSpinner size='lg' className='mt-10' />}>
-      <AuthWrap
-        title='Update Your Password'
-        descripiton='Enter your new password to securely update your account credentials.'
-      >
+      <AuthWrap title='Email Confirmation' descripiton=''>
         <VerificationForm />
       </AuthWrap>
     </Suspense>

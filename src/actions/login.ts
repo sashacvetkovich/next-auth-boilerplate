@@ -16,7 +16,10 @@ import { getTwoFactorTokenByEmail } from '@/data/two-factor-token';
 import { db } from '@/lib/db';
 import { getTwoFactorConfirmationByUserId } from '@/data/two-factor-confirmation';
 
-export const login = async (values: z.infer<typeof LoginSchema>) => {
+export const login = async (
+  values: z.infer<typeof LoginSchema>,
+  callbackUrl?: string | null
+) => {
   const validatedFields = LoginSchema.safeParse(values);
 
   if (!validatedFields.success) {
@@ -40,10 +43,10 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
       success: 'A confirmation email has been sent to your email address',
     };
   }
-  
+
   if (existingUser.isTwoFactorEnabled && existingUser.email) {
     if (code) {
-      const twoFactorToken = await getTwoFactorTokenByEmail(existingUser.email)
+      const twoFactorToken = await getTwoFactorTokenByEmail(existingUser.email);
 
       if (!twoFactorToken || twoFactorToken.token !== code) {
         return { error: 'Invalid code!' };
@@ -57,9 +60,11 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
 
       await db.twoFactorToken.delete({
         where: { id: twoFactorToken.id },
-      }); 
+      });
 
-      const exisitngConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id)
+      const exisitngConfirmation = await getTwoFactorConfirmationByUserId(
+        existingUser.id
+      );
 
       if (exisitngConfirmation) {
         await db.twoFactorConfirmation.delete({
@@ -72,7 +77,6 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
           userId: existingUser.id,
         },
       });
-
     } else {
       const twoFactorToken = await generateTwoFactorToken(existingUser.email);
       await sendTwoFactorTokenEmail(twoFactorToken.email, twoFactorToken.token);
@@ -85,7 +89,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     await signIn('credentials', {
       email,
       password,
-      redirectTo: DEFAULT_LOGIN_REDIRECT,
+      redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
     });
 
     return { success: 'Successfully logged in!' };

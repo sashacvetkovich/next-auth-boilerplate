@@ -33,7 +33,7 @@ const VerificationForm = () => {
   }, []);
 
   return (
-    <div className='sm:min-w-96'>
+    <div className='sm:min-w-80 mt-6'>
       {!successMessage && !errorMessage ? (
         <LoadingSpinner size='lg' className='mt-4' />
       ) : null}

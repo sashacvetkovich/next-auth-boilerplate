@@ -17,6 +17,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl');
   const isNotLinkedErrorVisible =
     searchParams.get('error') === 'OAuthAccountNotLinked';
   const notLinkedErrorMessage = isNotLinkedErrorVisible
@@ -36,7 +37,7 @@ const LoginForm = () => {
 
   const handleSubmitForm = (values: z.infer<typeof LoginSchema>) => {
     startTransition(() => {
-      login(values)
+      login(values, callbackUrl)
         .then((data) => {
           if (data?.error) {
             form.reset();
@@ -60,10 +61,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form
-      className='sm:min-w-80'
-      onSubmit={form.handleSubmit(handleSubmitForm)}
-    >
+    <form onSubmit={form.handleSubmit(handleSubmitForm)}>
       {isTwoFactorVisible && (
         <TextInput
           id='code'

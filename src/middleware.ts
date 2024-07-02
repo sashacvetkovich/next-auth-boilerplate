@@ -1,5 +1,5 @@
-import NextAuth from "next-auth";
-import authConfig from "./auth.config";
+import NextAuth from 'next-auth';
+import authConfig from './auth.config';
 
 const { auth } = NextAuth(authConfig);
 
@@ -9,7 +9,7 @@ import {
   authRoutes,
   DEFAULT_LOGIN_REDIRECT,
   LOGIN_ROUTE,
-} from "./routes";
+} from './routes';
 
 export default auth((req) => {
   const { nextUrl } = req;
@@ -30,8 +30,22 @@ export default auth((req) => {
   if (!isLoggedIn && !isPublicRoute) {
     return Response.redirect(new URL(LOGIN_ROUTE, nextUrl));
   }
+
+  if (!isLoggedIn && !isPublicRoute) {
+    let callbackUrl = nextUrl.pathname;
+
+    if (nextUrl.search) {
+      callbackUrl += nextUrl.search;
+    }
+
+    const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+
+    return Response.redirect(
+      new URL(`/?callbackUrl=${encodedCallbackUrl}`, nextUrl)
+    );
+  }
 });
 
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
 };

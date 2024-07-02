@@ -2,7 +2,7 @@ import React from 'react';
 import { buttonStyles } from './ButtonStyles';
 
 interface ButtonProps {
-  type: 'primary' | 'full';
+  type: 'primary' | 'full' | 'outline' | 'primaryMedium' | 'outlineMedium';
   text: string;
   isDisabled?: boolean;
 }

@@ -24,7 +24,7 @@ const config = {
           850: '#585667',
           900: '#5F5C7F',
         },
-        heading: '#0D0A2C',
+        heading: '#5D5A88',
       },
     },
   },

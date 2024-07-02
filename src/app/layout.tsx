@@ -1,11 +1,14 @@
 import type { Metadata } from 'next';
 import { SessionProvider } from 'next-auth/react';
+// Server actions
 import { auth } from '@/auth';
-import { Inter } from 'next/font/google';
-import './globals.css';
+// Components
 import Navbar from '@/components/navigation/Navbar/Navbar';
-
-const inter = Inter({ subsets: ['latin'] });
+// Styles
+import './globals.css';
+// Google fonts
+import { DM_Sans } from 'next/font/google';
+const dmSans = DM_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -22,7 +25,7 @@ export default async function RootLayout({
   return (
     <SessionProvider session={session}>
       <html lang='en'>
-        <body className={inter.className}>
+        <body className={dmSans.className}>
           <Navbar />
           {children}
         </body>

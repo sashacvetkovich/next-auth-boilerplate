@@ -1,4 +1,5 @@
 'use client';
+// Hooks
 import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 // Schemas
@@ -72,7 +73,7 @@ const RegisterForm = () => {
           />
           <InfoMessage text={successMessage} type='success' />
           <InfoMessage text={errorMessage} type='error' />
-          <Button text='Register' isDisabled={isLoading} />
+          <Button type='full' text='Register' isDisabled={isLoading} />
         </div>
       </form>
     </div>

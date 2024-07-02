@@ -1,15 +1,19 @@
 'use client';
 
-import * as z from 'zod';
+// Hooks
 import { useForm } from 'react-hook-form';
 import { useState, useTransition } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
-
-import { ResetSchema } from '@/schemas';
-import InfoMessage from '@/components/shared/InfoMessage/InfoMessage';
+// Server actions
 import { resetPassword } from '@/actions/reset';
+// Schemas
+import { ResetSchema } from '@/schemas';
+// Components
+import InfoMessage from '@/components/shared/InfoMessage/InfoMessage';
 import Button from '@/components/shared/Button/Button';
 import TextInput from '@/components/inputs/TextInput/TextInput';
+// Utils
+import * as z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const ResetPasswordForm = () => {
   const [error, setError] = useState<string | undefined>('');
@@ -54,7 +58,7 @@ const ResetPasswordForm = () => {
       <InfoMessage text={error || ''} type='error' />
       <InfoMessage text={success || ''} type='success' />
 
-      <Button text='Send reset email' isDisabled={isPending} />
+      <Button type='full' text='Send reset email' isDisabled={isPending} />
     </form>
   );
 };

@@ -1,18 +1,23 @@
 'use client';
 
-import * as z from 'zod';
+// Server actions
+import { settings } from '@/actions/settings';
+// Hooks
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useTransition, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { SettingsSchema } from '@/schemas';
-import { settings } from '@/actions/settings';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
+// Schemas
+import { SettingsSchema } from '@/schemas';
+// Components
 import TextInput from '@/components/inputs/TextInput/TextInput';
 import InfoMessage from '@/components/shared/InfoMessage/InfoMessage';
 import PasswordInput from '@/components/inputs/PasswordInput/PasswordInput';
 import Button from '@/components/shared/Button/Button';
 import Toggle from '@/components/shared/Toggle/Toggle';
+// Utils
+import * as z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const SettingsPage = () => {
   const user = useCurrentUser();
@@ -116,7 +121,7 @@ const SettingsPage = () => {
         <InfoMessage text={errorMessage || ''} type='error' />
         <InfoMessage text={successMessage || ''} type='success' />
 
-        <Button isDisabled={isPending} text='Save' />
+        <Button type='full' isDisabled={isPending} text='Save' />
       </form>
     </div>
   );

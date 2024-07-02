@@ -1,9 +1,8 @@
 'use client';
+// Hooks
 import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useState, useTransition } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
 // Schemas
 import { NewPasswordSchema } from '@/schemas';
 // Server actions
@@ -12,6 +11,9 @@ import { updatePassword } from '@/actions/newPassword';
 import InfoMessage from '../../shared/InfoMessage/InfoMessage';
 import Button from '../../shared/Button/Button';
 import PasswordInput from '../../inputs/PasswordInput/PasswordInput';
+// Utils
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
 const NewPasswordForm = () => {
   const searchParams = useSearchParams();
@@ -56,7 +58,7 @@ const NewPasswordForm = () => {
       />
       <InfoMessage text={error || ''} type='error' />
       <InfoMessage text={success || ''} type='success' />
-      <Button text='Update password' isDisabled={isPending} />
+      <Button type='full' text='Update password' isDisabled={isPending} />
     </form>
   );
 };

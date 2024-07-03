@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 // Components
-import LoginForm from '@/components/auth/LoginForm/LoginForm';
+import LoginForm from '@/components/Auth/LoginForm/LoginForm';
 import LoadingSpinner from '@/components/shared/LoadingSpinner/LoadingSpinner';
-import AuthWrap from '@/components/auth/AuthWrap/AuthWrap';
+import AuthWrap from '@/components/Auth/AuthWrap/AuthWrap';
 
 const LoginPage = () => {
   return (

@@ -7,8 +7,8 @@ import { LoginSchema } from '@/schemas';
 // Server actions
 import { login } from '@/actions/login';
 // Components
-import TextInput from '../../inputs/TextInput/TextInput';
-import PasswordInput from '../../inputs/PasswordInput/PasswordInput';
+import TextInput from '../../Inputs/TextInput/TextInput';
+import PasswordInput from '../../Inputs/PasswordInput/PasswordInput';
 import Button from '../../shared/Button/Button';
 import InfoMessage from '../../shared/InfoMessage/InfoMessage';
 // Utils

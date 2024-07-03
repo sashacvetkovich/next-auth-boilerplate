@@ -10,9 +10,9 @@ import { useCurrentUser } from '@/hooks/useCurrentUser';
 // Schemas
 import { SettingsSchema } from '@/schemas';
 // Components
-import TextInput from '@/components/inputs/TextInput/TextInput';
+import TextInput from '@/components/Inputs/TextInput/TextInput';
 import InfoMessage from '@/components/shared/InfoMessage/InfoMessage';
-import PasswordInput from '@/components/inputs/PasswordInput/PasswordInput';
+import PasswordInput from '@/components/Inputs/PasswordInput/PasswordInput';
 import Button from '@/components/shared/Button/Button';
 import Toggle from '@/components/shared/Toggle/Toggle';
 // Utils

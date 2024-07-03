@@ -3,7 +3,7 @@ import { SessionProvider } from 'next-auth/react';
 // Server actions
 import { auth } from '@/auth';
 // Components
-import Navbar from '@/components/navigation/Navbar/Navbar';
+import Navbar from '@/components/Navbar/Navbar';
 // Styles
 import './globals.css';
 // Google fonts

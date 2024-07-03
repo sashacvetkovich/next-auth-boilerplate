@@ -10,9 +10,9 @@ const Accordion = ({ questionList }: AccordionProps) => {
     <div>
       <div className='max-w-screen-xl mx-auto px-5 bg-white min-h-sceen'>
         <div className='grid divide-y divide-primary-300 max-w-xl mx-auto mt-8'>
-          {questionList.map(({ answer, question }) => {
+          {questionList.map(({ answer, question }, index) => {
             return (
-              <div className='py-5'>
+              <div className='py-5' key={index}>
                 <details className='group'>
                   <summary className='flex justify-between items-center font-medium cursor-pointer list-none'>
                     <span className='text-primary-900 text-lg'>{question}</span>

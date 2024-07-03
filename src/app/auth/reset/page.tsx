@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import AuthWrap from '@/components/auth/AuthWrap/AuthWrap';
-import ResetPasswordForm from '@/components/auth/ResetPasswordForm/ResetPasswordForm';
+import AuthWrap from '@/components/Auth/AuthWrap/AuthWrap';
+import ResetPasswordForm from '@/components/Auth/ResetPasswordForm/ResetPasswordForm';
 import LoadingSpinner from '@/components/shared/LoadingSpinner/LoadingSpinner';
 
 const ResetPasswordPage = () => {

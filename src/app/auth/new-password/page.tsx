@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import NewPasswordForm from '@/components/auth/NewPasswordForm/NewPasswordForm';
-import AuthWrap from '@/components/auth/AuthWrap/AuthWrap';
+import NewPasswordForm from '@/components/Auth/NewPasswordForm/NewPasswordForm';
+import AuthWrap from '@/components/Auth/AuthWrap/AuthWrap';
 import LoadingSpinner from '@/components/shared/LoadingSpinner/LoadingSpinner';
 
 const NewPasswordPage = () => {

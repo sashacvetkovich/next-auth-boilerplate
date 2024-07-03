@@ -10,7 +10,7 @@ import { updatePassword } from '@/actions/newPassword';
 // Components
 import InfoMessage from '../../shared/InfoMessage/InfoMessage';
 import Button from '../../shared/Button/Button';
-import PasswordInput from '../../inputs/PasswordInput/PasswordInput';
+import PasswordInput from '../../Inputs/PasswordInput/PasswordInput';
 // Utils
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';

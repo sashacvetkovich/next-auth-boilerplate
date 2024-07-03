@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
-import VerificationForm from '@/components/auth/VerificationForm/VerificationForm';
+import VerificationForm from '@/components/Auth/VerificationForm/VerificationForm';
 import LoadingSpinner from '@/components/shared/LoadingSpinner/LoadingSpinner';
-import AuthWrap from '@/components/auth/AuthWrap/AuthWrap';
+import AuthWrap from '@/components/Auth/AuthWrap/AuthWrap';
 
 const VerificationPage = () => {
   return (

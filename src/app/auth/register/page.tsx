@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import AuthWrap from '@/components/auth/AuthWrap/AuthWrap';
-import RegisterForm from '@/components/auth/RegisterForm/RegisterForm';
+import AuthWrap from '@/components/Auth/AuthWrap/AuthWrap';
+import RegisterForm from '@/components/Auth/RegisterForm/RegisterForm';
 import LoadingSpinner from '@/components/shared/LoadingSpinner/LoadingSpinner';
 
 const RegisterPage = () => {

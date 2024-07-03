@@ -10,7 +10,7 @@ import { ResetSchema } from '@/schemas';
 // Components
 import InfoMessage from '@/components/shared/InfoMessage/InfoMessage';
 import Button from '@/components/shared/Button/Button';
-import TextInput from '@/components/inputs/TextInput/TextInput';
+import TextInput from '@/components/Inputs/TextInput/TextInput';
 // Utils
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';

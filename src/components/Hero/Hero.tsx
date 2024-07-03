@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import exampleImage from '@/assets/example-image.svg';
 import Button from '../shared/Button/Button';
+import exampleImage from '@/assets/images/example-image.svg';
 
 const Hero = () => {
   return (

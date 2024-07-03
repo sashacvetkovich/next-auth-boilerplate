@@ -5,11 +5,16 @@ interface ButtonProps {
   type: 'primary' | 'full' | 'outline' | 'primaryMedium' | 'outlineMedium';
   text: string;
   isDisabled?: boolean;
+  additionalStyles?: string;
 }
 
-const Button = ({ isDisabled, text, type }: ButtonProps) => {
+const Button = ({ isDisabled, text, type, additionalStyles }: ButtonProps) => {
+  const styles = `${additionalStyles ? additionalStyles : ''} ${
+    buttonStyles[type]
+  }`;
+
   return (
-    <button className={buttonStyles[type]} type='submit' disabled={isDisabled}>
+    <button className={styles} type='submit' disabled={isDisabled}>
       {text}
     </button>
   );

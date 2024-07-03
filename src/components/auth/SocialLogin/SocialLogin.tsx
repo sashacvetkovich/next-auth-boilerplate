@@ -4,9 +4,9 @@ import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 // Server actions
 import { signIn } from 'next-auth/react';
 // Icons
-import faceBookIcon from '@/assets/facebook-icon.svg';
-import googleIcon from '@/assets/google-icon.svg';
-import githubIcon from '@/assets/github-icon.svg';
+import faceBookIcon from '@/assets/images/facebook-icon.svg';
+import googleIcon from '@/assets/images/google-icon.svg';
+import githubIcon from '@/assets/images/github-icon.svg';
 
 const SocialLogin = () => {
   const handleSocialLogin = (provider: 'google' | 'github' | 'facebook') => {
@@ -38,7 +38,7 @@ const SocialLogin = () => {
         <div
           onClick={() => handleSocialLogin('github')}
           className='flex items-center justify-center gap-2 border border-slate-700 rounded-full px-2 py-2 cursor-pointer'
-        > 
+        >
           <Image src={githubIcon} width={20} alt='facebook-icon' />
           <p className='text-slate-800 text-sm'>Continue with GitHub</p>
         </div>

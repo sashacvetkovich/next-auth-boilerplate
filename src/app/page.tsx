@@ -2,6 +2,7 @@ import Faq from '@/components/Faq/Faq';
 import Hero from '@/components/Hero/Hero';
 import LogoStrip from '@/components/LogoStrip/LogoStrip';
 import PricingContainer from '@/components/Pricing/PricingContainer/PricingContainer';
+import CallToAction from '@/components/CallToAction/CallToAction';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <LogoStrip />
       <PricingContainer />
       <Faq />
+      <CallToAction/>
     </main>
   );
 }

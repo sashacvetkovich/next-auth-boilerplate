@@ -1,4 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS Boilerplate: The Ultimate Starter Kit for Your SaaS or Web App
+<p>
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=nextjs,postgres,tailwind,supabase,ts" />
+  </a>
+</p>
+
+This NextJS boilerplate comes with an extensive set of pre-built components. The boilerplate features an advanced authentication system, making it a great alternative to [Clerk](https://clerk.com/). Unlike Clerk, your data is saved in your own database. Using PostgreSQL for the database allows for easy integration with [Supabase](https://supabase.com/).
+
+
+## Authentication Features
+
+- **Email/Password Login:** Secure and reliable authentication with email and password.
+- **OAuth Provider Integration:** Enable social logins with Google, Facebook, and GitHub.
+- **Forgot Password Functionality:** Allow users to reset their passwords with ease.
+- **Email Verification:** Ensure the authenticity of your users with email confirmation.
+- **Two-Factor Authentication (2FA):** Add an extra layer of security with 2FA.
+- **User Roles:** Manage user permissions and roles effortlessly.
+
+## Pre-Built Components
+
+- **Authentication Components:** Essential components for authentication, including login, registration, and password reset.
+- **Hero Section**
+- **Pricing Section**
+- **FAQ Section**
+- **Header**
+- **Footer**
+- **Call to Action Section**
+- **Stats Section**
+- **Settings Page**
+
+All components are fully responsive across all devices.
+
+## Preview
+
+Check out the preview [https://next-auth-boilerplate-black.vercel.app/](https://next-auth-boilerplate-black.vercel.app/).
+
+If you want to log in as an admin, use the following credentials:
+
+- **Email:** admin@example.com
+- **Password:** adminuser
 
 ## Getting Started
 
@@ -13,24 +53,3 @@ pnpm dev
 # or
 bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

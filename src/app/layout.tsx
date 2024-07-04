@@ -8,6 +8,7 @@ import Navbar from '@/components/Navbar/Navbar';
 import './globals.css';
 // Google fonts
 import { DM_Sans } from 'next/font/google';
+import Footer from '@/components/Footer/Footer';
 const dmSans = DM_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -25,9 +26,10 @@ export default async function RootLayout({
   return (
     <SessionProvider session={session}>
       <html lang='en'>
-        <body className={dmSans.className}>
+        <body className={`${dmSans.className} flex flex-col min-h-screen`}>
           <Navbar />
           {children}
+          <Footer />
         </body>
       </html>
     </SessionProvider>

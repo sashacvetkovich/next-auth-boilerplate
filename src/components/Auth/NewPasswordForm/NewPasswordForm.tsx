@@ -49,8 +49,8 @@ const NewPasswordForm = () => {
     <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
       <PasswordInput
         id='password'
-        label='******'
-        placeholder='Password'
+        label='New password'
+        placeholder='******'
         isDisabled={isPending}
         form={form.register('password')}
         errorMessage={errors.password?.message}
@@ -58,7 +58,12 @@ const NewPasswordForm = () => {
       />
       <InfoMessage text={error || ''} type='error' />
       <InfoMessage text={success || ''} type='success' />
-      <Button type='full' text='Update password' isDisabled={isPending} />
+      <Button
+        type='primary'
+        text='Update password'
+        isDisabled={isPending}
+        additionalStyles='w-full'
+      />
     </form>
   );
 };

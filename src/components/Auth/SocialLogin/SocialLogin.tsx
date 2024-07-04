@@ -17,30 +17,30 @@ const SocialLogin = () => {
     <div className=''>
       <div className='flex items-center justify-center my-7'>
         <hr className='w-full h-px bg-gray-200 border-0' />
-        <p className='text-slate-700 mx-4'>or</p>
+        <p className='text-primary-800 mx-4'>or</p>
         <hr className='w-full h-px bg-gray-200 border-0' />
       </div>
       <div className='space-y-4 mt-4'>
         <div
           onClick={() => handleSocialLogin('google')}
-          className='flex items-center justify-center gap-2 border border-slate-700 rounded-full px-2 py-2 cursor-pointer'
+          className='flex items-center justify-center gap-2 border border-primary-600 rounded-full px-2 py-2 cursor-pointer'
         >
           <Image src={googleIcon} width={20} alt='facebook-icon' />
-          <p className='text-slate-800 text-sm'>Continue with Google</p>
+          <p className='text-primary-900 text-sm'>Continue with Google</p>
         </div>
         <div
           onClick={() => handleSocialLogin('facebook')}
-          className='flex items-center justify-center gap-2 border border-slate-700 rounded-full px-2 py-2 cursor-pointer'
+          className='flex items-center justify-center gap-2 border border-primary-600 rounded-full px-2 py-2 cursor-pointer'
         >
           <Image src={faceBookIcon} width={20} alt='facebook-icon' />
-          <p className='text-slate-800 text-sm'>Continue with Facebook</p>
+          <p className='text-primary-900 text-sm'>Continue with Facebook</p>
         </div>
         <div
           onClick={() => handleSocialLogin('github')}
-          className='flex items-center justify-center gap-2 border border-slate-700 rounded-full px-2 py-2 cursor-pointer'
+          className='flex items-center justify-center gap-2 border border-primary-600 rounded-full px-2 py-2 cursor-pointer'
         >
           <Image src={githubIcon} width={20} alt='facebook-icon' />
-          <p className='text-slate-800 text-sm'>Continue with GitHub</p>
+          <p className='text-primary-900 text-sm'>Continue with GitHub</p>
         </div>
       </div>
     </div>

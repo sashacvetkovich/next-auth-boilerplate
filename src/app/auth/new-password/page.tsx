@@ -8,7 +8,7 @@ const NewPasswordPage = () => {
     <Suspense fallback={<LoadingSpinner size='lg' className='mt-10' />}>
       <AuthWrap
         title='Update Your Password'
-        descripiton='Enter and confirm your new password to securely update your account credentials.'
+        descripiton='Enter your new password to securely update your account credentials.'
       >
         <NewPasswordForm />
       </AuthWrap>

@@ -21,12 +21,12 @@ const TextInput = ({
 }: TextInputProps) => {
   return (
     <div className='flex flex-col'>
-      <label htmlFor={id} className='text-slate-800'>
+      <label htmlFor={id} className='text-primary-900'>
         {label}
       </label>
       <input
         className={`${
-          errorMessage ? 'border-red-600' : 'border-slate-700'
+          errorMessage ? 'border-red-600' : 'border-primary-600'
         } border rounded-md px-3 py-2 focus:outline-1 focus:outline-slate-500`}
         type={type === 'email' ? 'email' : 'text'}
         id={id}

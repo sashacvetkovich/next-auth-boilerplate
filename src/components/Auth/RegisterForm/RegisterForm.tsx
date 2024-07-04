@@ -73,7 +73,7 @@ const RegisterForm = () => {
           />
           <InfoMessage text={successMessage} type='success' />
           <InfoMessage text={errorMessage} type='error' />
-          <Button type='full' text='Register' isDisabled={isLoading} />
+          <Button type='primary' text='Register' isDisabled={isLoading} additionalStyles='w-full' />
         </div>
       </form>
     </div>

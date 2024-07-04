@@ -101,9 +101,10 @@ const LoginForm = () => {
       <InfoMessage text={errorMessage || notLinkedErrorMessage} type='error' />
 
       <Button
-        type='full'
+        type='primary'
         text={isTwoFactorVisible ? 'Confirm' : 'Log in'}
         isDisabled={isLoading}
+        additionalStyles='w-full mt-4'
       />
     </form>
   );

@@ -14,16 +14,16 @@ const InfoMessage = ({ text, type }: InfoMessageProps) => {
     <div
       className={`w-full flex items-center p-2 rounded-md mt-2 border ${
         type === 'success'
-          ? 'border-green-400 bg-green-200'
-          : 'border-red-400 bg-red-200'
+          ? 'border-green-200 bg-green-100'
+          : 'border-red-200 bg-red-200'
       }  `}
     >
       {type === 'error' ? (
-        <FaTimesCircle className='text-rose-700' />
+        <FaTimesCircle className='text-rose-500' />
       ) : (
-        <FaCheckCircle className='text-green-800' />
+        <FaCheckCircle className='text-green-500' />
       )}
-      <p className='ml-2 text-sm text-slate-800'>{text}</p>
+      <p className='ml-2 text-sm text-primary-900'>{text}</p>
     </div>
   );
 };

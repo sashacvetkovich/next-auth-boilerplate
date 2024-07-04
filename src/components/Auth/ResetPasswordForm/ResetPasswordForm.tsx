@@ -58,7 +58,12 @@ const ResetPasswordForm = () => {
       <InfoMessage text={error || ''} type='error' />
       <InfoMessage text={success || ''} type='success' />
 
-      <Button type='full' text='Send reset email' isDisabled={isPending} />
+      <Button
+        type='primary'
+        text='Send reset email'
+        isDisabled={isPending}
+        additionalStyles='w-full'
+      />
     </form>
   );
 };

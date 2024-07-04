@@ -71,7 +71,7 @@ const PasswordInput = ({
           {...form}
           className={`${
             errorMessage ? 'border-red-600' : 'border-primary-600'
-          } border rounded-md px-3 py-2 outline-none w-full`}
+          } border rounded-md px-3 py-2 outline-none w-full text-primary-900`}
           type={isPasswordVisible ? 'text' : 'password'}
           id={id}
           placeholder={placeholder}

@@ -16,7 +16,7 @@ const Hero = () => {
             eligendi possimus eum voluptas similique vel quidem laborum, esse
             quam sint quisquam. Exercitationem, adipisci tempore.
           </p>
-          <div className='space-x-4 mt-8'>
+          <div className='flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8'>
             <Button text='Get started' type='primaryMedium' />
             <Button text='Talk to sales' type='outlineMedium' />
           </div>

@@ -9,11 +9,9 @@ const Navbar = async () => {
   const user = await getCurrentUser();
   return (
     <nav className='shadow-sm'>
-      <div className='flex items-center justify-between py-5 mx-auto px-5 sm:px-10 container'>
+      <div className='flex items-center justify-between mx-auto p-5 sm:px-10 container'>
         <Link href='/'>
-          <div className='flex items-center gap-2'>
-            <Image src={logoIcon} alt='logo' height={25} />
-          </div>
+          <Image src={logoIcon} alt='logo' width={25} />
         </Link>
         <div className='flex space-x-8 items-center'>
           {user ? (

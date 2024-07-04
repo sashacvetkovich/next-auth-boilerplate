@@ -27,7 +27,7 @@ const TextInput = ({
       <input
         className={`${
           errorMessage ? 'border-red-600' : 'border-primary-600'
-        } border rounded-md px-3 py-2 focus:outline-1 focus:outline-slate-500`}
+        } border rounded-md px-3 py-2 focus:outline-1 text-primary-900 focus:outline-slate-500`}
         type={type === 'email' ? 'email' : 'text'}
         id={id}
         placeholder={placeholder}

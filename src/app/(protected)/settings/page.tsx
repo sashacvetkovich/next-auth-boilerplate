@@ -61,10 +61,12 @@ const SettingsPage = () => {
   };
 
   return (
-    <div className='p-4'>
-      <h1 className='text-2xl font-semibold text-center'>Settings</h1>
+    <div className='mt-10'>
+      <h1 className='text-2xl font-semibold text-center text-heading'>
+        Settings
+      </h1>
       <form
-        className='space-y-6 max-w-[500px] mx-auto'
+        className='space-y-6 max-w-[500px] mx-auto px-5'
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <div className='space-y-4'>
@@ -108,7 +110,7 @@ const SettingsPage = () => {
           )}
           {user?.isOAuth === false && (
             <div className='flex items-center justify-between'>
-              <p>Two Factor Authentication</p>
+              <p className='text-primary-900'>Two Factor Authentication</p>
               <Toggle
                 isDisabled={isPending}
                 form={form.register('isTwoFactorEnabled')}
@@ -121,7 +123,12 @@ const SettingsPage = () => {
         <InfoMessage text={errorMessage || ''} type='error' />
         <InfoMessage text={successMessage || ''} type='success' />
 
-        <Button type='full' isDisabled={isPending} text='Save' />
+        <Button
+          type='primary'
+          isDisabled={isPending}
+          text='Save'
+          additionalStyles='w-full'
+        />
       </form>
     </div>
   );
